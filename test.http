@@ -1,0 +1,41 @@
+### 1. 회원가입 (DB 초기화 후 반드시 한 번 실행)
+POST http://localhost:3000/api/signup
+Content-Type: application/json
+
+{
+    "email": "test@naver.com",
+    "password": "1234",
+    "nickname": "경주지킴이"
+}
+
+### 2. 로그인 (성공 시 받은 토큰을 복사해서 아래 Bearer 뒤에 붙여넣으세요)
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "email": "test@naver.com",
+    "password": "1234"
+}
+
+### 3. 즐겨찾기 추가 
+# Authorization 헤더의 Bearer 토큰을 2번에서 받은 것으로 교체하세요.
+POST http://localhost:3000/api/favorites
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAbmF2ZXIuY29tIiwiaWF0IjoxNzc0MTUyNDc3LCJleHAiOjE3NzQyMzg4Nzd9.3Rza-6p9S5Nc_BGU2Q72kNOkNLac0uflydgyZMSeCZw
+
+{
+    "station_id": "KUB352000006"
+}
+
+### 4. 내 즐겨찾기 목록 조회
+GET http://localhost:3000/api/favorites
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAbmF2ZXIuY29tIiwiaWF0IjoxNzc0MTUyNDc3LCJleHAiOjE3NzQyMzg4Nzd9.3Rza-6p9S5Nc_BGU2Q72kNOkNLac0uflydgyZMSeCZw
+
+### 5. 즐겨찾기 삭제
+# 4번 조회 결과에서 확인한 'fav_id' 숫자를 주소 끝에 넣으세요.
+DELETE http://localhost:3000/api/favorites/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAbmF2ZXIuY29tIiwiaWF0IjoxNzc0MTUyNDc3LCJleHAiOjE3NzQyMzg4Nzd9.3Rza-6p9S5Nc_BGU2Q72kNOkNLac0uflydgyZMSeCZw
+
+### 6. [통합] 즐겨찾기 목록 + 실시간 정보 조회
+GET http://localhost:3000/api/favorites-with-arrival
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAbmF2ZXIuY29tIiwiaWF0IjoxNzc0MTUyNDc3LCJleHAiOjE3NzQyMzg4Nzd9.3Rza-6p9S5Nc_BGU2Q72kNOkNLac0uflydgyZMSeCZw
