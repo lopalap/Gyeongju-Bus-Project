@@ -13,7 +13,8 @@ MariaDB 기반의 사용자 정류장 즐겨찾기 저장 및 관리.
 범위 (불포함): 결제 시스템, 노선 최단 거리 길 찾기 알고리즘
 
 2.1 유스케이스 다이어그램
-<img width="1003" height="1087" alt="image" src="https://github.com/user-attachments/assets/1d2c4e03-b0ab-4aa5-8050-8f3ab3b8b000" />
+<img width="961" height="960" alt="12" src="https://github.com/user-attachments/assets/dc230aad-2d54-4c7e-aad0-57ccd51d352b" />
+
 
 2.2 주요 기능 명세
 실시간 조회: 공공데이터 API를 통해 1초 단위로 버스 위치와 잔여 시간을 갱신하여 지도에 표시.
