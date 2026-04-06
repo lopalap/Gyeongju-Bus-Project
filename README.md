@@ -73,11 +73,16 @@ Web Notification API (브라우저 푸시 알림)
 
 5. 실험 (테스트 데이터 및 결과)
 테스트 시나리오:
-회원가입
+웹 접속, 로그인/로그아웃
+웹 어플리케이션에 접속, 로그인/로그아웃 기능이 제대로 작동하고 있는지 확인한다. 로그인하지 않은 경우 로그인 화면만 띄워진다.
+
+웹 브라우저 실행
+웹 어플리케이션 접속
 <img width="564" height="586" alt="image" src="https://github.com/user-attachments/assets/f5dfd1c0-66bc-4707-8db0-3e726e238896" />
 <img width="555" height="189" alt="image" src="https://github.com/user-attachments/assets/02ac4bb1-f02a-45a7-a6c8-e3b22a6974fc" />
+<img width="575" height="467" alt="image" src="https://github.com/user-attachments/assets/d663abb4-2969-48c0-9139-1add71226d8f" />
 
-로그인
+
 <img width="2559" height="1277" alt="image" src="https://github.com/user-attachments/assets/634b5e4f-0942-445c-84e2-2aaeb2376444" />
 
 
