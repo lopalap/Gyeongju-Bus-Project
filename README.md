@@ -25,7 +25,89 @@ MariaDB 기반의 사용자 정류장 즐겨찾기 저장 및 관리.
 
 3. 설계
 
-3.1 프로그램 구조 (Architecture)
+3.1 클래스 다이어그램 (Class Diagram)
+시스템을 구성하는 주요 객체 간의 관계와 역할을 정의합니다.
+classDiagram
+    class BusApp {
+        +String user_id
+        +searchStation(name)
+        +toggleFavorite(stationId)
+        +renderMap()
+    }
+    class BusServer {
+        +fetchBusData()
+        +processArrivalLogic()
+        +sendPushNotification()
+    }
+    class MariaDB {
+        +favorites_table
+        +saveFavorite(data)
+        +getFavorites(userId)
+    }
+    class GyeongjuAPI {
+        <<External>>
+        +getStationArriveList()
+        +getBusLocation()
+    }
+
+    BusApp --> BusServer : API Request
+    BusServer --> MariaDB : Query/Save
+    BusServer --> GyeongjuAPI : Data Fetch
+
+3.2 순서 다이어그램 (Sequence Diagram)
+사용자가 즐겨찾는 정류장의 정보를 실시간으로 조회할 때의 전체적인 흐름입니다.
+sequenceDiagram
+    participant User as 사용자
+    participant Front as React (Client)
+    participant Back as Node.js (Server)
+    participant DB as MariaDB
+    participant API as 공공데이터 API
+
+    User->>Front: 즐겨찾기 목록 클릭
+    Front->>Back: GET /api/favorites (user_id)
+    Back->>DB: 사용자 즐겨찾기 목록 조회
+    DB-->>Back: 정류장 ID 목록 반환
+    Back->>API: 실시간 도착 정보 요청 (Station ID)
+    API-->>Back: 실시간 버스 데이터 반환
+    Back-->>Front: 가공된 도착 정보 전송
+    Front-->>User: 지도 및 리스트에 실시간 정보 표시
+
+3.3 서비스 로직 순서도 (Flowchart)
+본 서비스의 핵심인 '3분 전 도착 알림'의 내부 로직 흐름도입니다
+graph TD
+    A[시작: 실시간 데이터 수신] --> B{도착 예정 시간 확인}
+    B -- 180초(3분) 초과 --> C[대기 및 데이터 갱신]
+    B -- 180초 이하 --> D{이전에 알림을 보냈는가?}
+    D -- Yes --> E[알림 미발송/종료]
+    D -- No --> F[Web Push Notification 발송]
+    F --> G[알림 발송 상태 저장: is_notified=True]
+    G --> C
+    C --> A    
+3.4 핵심 알고리즘 (Algorithm)
+실시간 도착 감지 및 알림 발송을 위한 슈도 코드(Pseudo Code)입니다.
+// [Pseudo Code] 도착 알림 및 데이터 필터링 로직
+FUNCTION processBusArrival():
+    WHILE (service_is_active) DO
+        SET current_bus_data = FETCH_FROM_GYEONGJU_API() 
+        
+        FOR EACH bus_info IN current_bus_data DO
+            // 1. 도착 예정 시간이 180초(3분) 이하인지 검사
+            IF (bus_info.arrival_time <= 180 AND bus_info.is_notified == FALSE) THEN
+                EXECUTE Web_Notification_Push("버스가 곧 도착합니다!")
+                SET bus_info.is_notified = TRUE // 중복 알림 방지
+            END IF
+
+            // 2. 즐겨찾기 정류장 매핑 여부 확인
+            IF (bus_info.stationId IN USER_FAVORITES) THEN
+                UPDATE_UI_HIGHLIGHT(bus_info)
+            END IF
+        END FOR
+        
+        WAIT 10 SECONDS // API 부하 방지 및 갱신 주기
+    END WHILE
+END FUNCTION
+
+3.5 프로그램 구조 (Architecture)
 시스템 아키텍처: 클라이언트-서버 구조로 설계.
 
 Frontend: React를 사용하여 컴포넌트 기반의 UI를 구성하고, 사용자 인터랙션 처리.
@@ -34,27 +116,6 @@ Backend: Node.js와 Express를 활용하여 공공 API 데이터를 가공하여
 
 Database: MariaDB를 연동하여 정류장 메타데이터 및 사용자별 즐겨찾기 정보 관리.
 
-3.2 핵심 알고리즘 (Algorithm)
-본 서비스의 핵심인 '실시간 도착 감지 및 알림 발송' 알고리즘은 다음과 같습니다.
-
-알고리즘 명칭: 도착 임박 데이터 필터링 및 푸시 알림 트리거 로직
-
-설명: API로부터 받은 수많은 버스 데이터 중, 사용자가 설정한 조건(도착 3분 전)에 부합하는 데이터를 초 단위로 계산하여 알림을 발생시킴.
-
-// [Pseudo Code] 도착 알림 로직
-WHILE (service_is_active) DO
-    SET current_bus_data = FETCH_FROM_BUS_API() // 실시간 API 호출
-    
-    FOR EACH bus_info IN current_bus_data DO
-        // 도착 예정 시간이 180초(3분) 이하인지 검사
-        IF (bus_info.arrival_time <= 180 AND bus_info.is_notified == FALSE) THEN
-            EXECUTE Web_Notification_Push("버스 도착 임박 알림")
-            SET bus_info.is_notified = TRUE // 중복 알림 방지 플래그 설정
-        END IF
-    END FOR
-    
-    WAIT 10 SECONDS // API 부하 방지를 위한 갱신 주기 설정
-END WHILE
 
 4. 구현 (구현 환경 및 API)
 개발 환경: VS Code, Git
