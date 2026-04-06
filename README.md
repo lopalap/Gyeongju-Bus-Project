@@ -76,14 +76,20 @@ Web Notification API (브라우저 푸시 알림)
 웹 접속, 로그인/로그아웃
 웹 어플리케이션에 접속, 로그인/로그아웃 기능이 제대로 작동하고 있는지 확인한다. 로그인하지 않은 경우 로그인 화면만 띄워진다.
 
-웹 브라우저 실행
-웹 어플리케이션 접속
+
 <img width="564" height="586" alt="image" src="https://github.com/user-attachments/assets/f5dfd1c0-66bc-4707-8db0-3e726e238896" />
 <img width="555" height="189" alt="image" src="https://github.com/user-attachments/assets/02ac4bb1-f02a-45a7-a6c8-e3b22a6974fc" />
 <img width="575" height="467" alt="image" src="https://github.com/user-attachments/assets/d663abb4-2969-48c0-9139-1add71226d8f" />
 
-
+웹 브라우저 실행
+웹 어플리케이션 접속
 <img width="2559" height="1277" alt="image" src="https://github.com/user-attachments/assets/634b5e4f-0942-445c-84e2-2aaeb2376444" />
+
+검색기능 - 검색했을때 초성으로 관련된 정류장 찾기 
+<img width="362" height="197" alt="image" src="https://github.com/user-attachments/assets/5846e615-8415-447d-9f07-76c4b781e977" />
+
+마커 기능 - 정류장 마커를 누르면 시간과 즐겨찾기 버튼이 나옴 
+<img width="1016" height="890" alt="image" src="https://github.com/user-attachments/assets/465b3555-431a-4222-abe0-a19c6b23fe87" />
 
 
 국민건강보험.정보고등학교 정류장을 대상으로 즐겨찾기 버스 도착 정보 요청.
