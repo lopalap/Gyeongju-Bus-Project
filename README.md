@@ -1,4 +1,4 @@
-[최종 보고서] Gyeongju Bus Live: 지능형 실시간 버스 정보 시스템
+<img width="572" height="461" alt="image" src="https://github.com/user-attachments/assets/7a8a279b-52ba-4153-81fa-c69d38446129" />[최종 보고서] Gyeongju Bus Live: 지능형 실시간 버스 정보 시스템
 1. 실험의 목적과 범위
 목적: 경주시 공공 데이터를 실시간으로 정제하여 사용자에게 최적화된 도착 정보를 제공하고, Web Notification API를 활용해 도착 전 능동적 알림을 제공하는 풀스택 시스템 구축.
 
@@ -72,7 +72,17 @@ Kakao: Maps SDK (지도 렌더링 및 마커 오버레이)
 Web Notification API (브라우저 푸시 알림)
 
 5. 실험 (테스트 데이터 및 결과)
-테스트 시나리오: 국민건강보험.정보고등학교 정류장을 대상으로 즐겨찾기 버스 도착 정보 요청.
+테스트 시나리오:
+회원가입
+<img width="564" height="586" alt="image" src="https://github.com/user-attachments/assets/f5dfd1c0-66bc-4707-8db0-3e726e238896" />
+<img width="555" height="189" alt="image" src="https://github.com/user-attachments/assets/02ac4bb1-f02a-45a7-a6c8-e3b22a6974fc" />
+
+로그인
+<img width="2559" height="1277" alt="image" src="https://github.com/user-attachments/assets/634b5e4f-0942-445c-84e2-2aaeb2376444" />
+
+
+국민건강보험.정보고등학교 정류장을 대상으로 즐겨찾기 버스 도착 정보 요청.
+<img width="2559" height="1439" alt="image" src="https://github.com/user-attachments/assets/b253e789-1c81-4228-88e1-6ab384afdea9" />
 
 결과:
 
@@ -81,7 +91,6 @@ API 응답 속도: 평균 200ms 이내 데이터 수신 및 파싱 성공.
 알림 정확도: 잔여 시간 180초 도달 시 즉시 브라우저 우측 하단에 알림 팝업 발생 확인.
 
 지도 정합성: API의 위도/경도 데이터와 카카오맵 마커 위치 일치율 100%.
-<img width="2559" height="1439" alt="image" src="https://github.com/user-attachments/assets/b253e789-1c81-4228-88e1-6ab384afdea9" />
 
 
 6. 결론
